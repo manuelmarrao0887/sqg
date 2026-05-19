@@ -1,0 +1,183 @@
+/* SQG Portal — Mobile refinements */
+
+@media (max-width: 900px) {
+  /* Hide topbar search; show org name in topbar instead */
+  .portal-topbar { padding: 0 16px; gap: 10px; }
+  .portal-topbar .breadcrumb { font-size: 10px; }
+  .portal-topbar .breadcrumb {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 60vw;
+  }
+  .portal-topbar .icon-btn { width: 38px; height: 38px; }
+  .portal-topbar .user-chip .un { display: none; }
+  .portal-topbar .user-chip { padding: 4px; }
+
+  /* Headings */
+  .portal-h { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .portal-h h2 { font-size: clamp(24px, 7vw, 30px) !important; }
+  .portal-h .h-actions { width: 100%; flex-wrap: wrap; }
+  .portal-h .h-actions .p-btn { flex: 1; justify-content: center; }
+
+  /* Stat cards */
+  .stat-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
+  .p-stat { padding: 16px; min-height: 110px; }
+  .p-stat .v { font-size: 24px; margin-top: 4px; }
+  .p-stat .spark { transform: scale(.8); transform-origin: bottom right; }
+
+  /* Cards */
+  .p-card { padding: 18px; border-radius: 12px; }
+  .p-card-h { flex-wrap: wrap; gap: 8px; }
+
+  /* List rows — collapse to two-column */
+  .p-list { margin: 0 -18px -18px; }
+  .p-list-row {
+    padding: 14px 18px;
+    grid-template-columns: auto 1fr !important;
+    gap: 12px;
+  }
+  .p-list-row > *:not(:first-child):not(:nth-child(2)) {
+    grid-column: 2;
+    justify-self: start;
+    font-size: 12px;
+  }
+  .p-list-row .p-val { font-size: 14px !important; font-weight: 500; }
+  .p-list-row .p-icon { width: 28px; height: 28px; }
+  .p-list-row .p-name { font-size: 13.5px; }
+  .p-list-row .p-meta { font-size: 11px; }
+  .p-list-row .p-status { font-size: 10px; padding: 3px 8px; }
+
+  /* Tables → card list */
+  .p-table-card { border-radius: 12px; }
+  .p-table { display: block; }
+  .p-table thead { display: none; }
+  .p-table tbody, .p-table tr, .p-table td { display: block; }
+  .p-table tbody tr {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    position: relative;
+  }
+  .p-table tbody tr:last-child { border-bottom: 0; }
+  .p-table tbody tr:hover td { background: transparent; }
+  .p-table td {
+    padding: 2px 0;
+    border: 0;
+    font-size: 13px;
+  }
+  .p-table td:first-child {
+    font-size: 14px; font-weight: 500;
+    padding-bottom: 4px;
+  }
+  .p-table td.num { text-align: left; font-size: 15px; font-weight: 500; }
+  .p-table td:last-child {
+    position: absolute; top: 14px; right: 14px;
+    padding: 0;
+  }
+
+  /* Two-col stacks */
+  .two-col { grid-template-columns: 1fr !important; gap: 14px; }
+
+  /* Segmented controls wrap */
+  .p-seg { flex-wrap: wrap; }
+  .p-seg button { padding: 7px 10px; font-size: 11.5px; }
+
+  /* Documents grid → single column tighter */
+  .doc-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .doc-thumb { aspect-ratio: 1.2/1; }
+  .doc-thumb .doc-ext { font-size: 18px; }
+  .doc-info { padding: 10px 12px 12px; }
+  .doc-info .n { font-size: 12.5px; }
+  .doc-info .m { font-size: 10.5px; }
+
+  /* Calendar — compact */
+  .cal-grid { gap: 3px; }
+  .cal-day {
+    padding: 4px 4px;
+    min-height: 50px;
+    font-size: 11px;
+    border-radius: 6px;
+  }
+  .cal-day .cal-evt {
+    font-size: 8px;
+    padding: 1px 4px;
+    margin-top: 2px;
+  }
+  .cal-h { font-size: 9px; padding: 6px 0 8px; }
+
+  /* Chat — full-height drawer-like */
+  .chat-shell {
+    grid-template-columns: 1fr;
+    min-height: 70vh;
+    border-radius: 12px;
+  }
+  .chat-side { display: none; }
+  .chat-shell.show-list .chat-side { display: flex; }
+  .chat-shell.show-list .chat-pane { display: none; }
+  .chat-pane-h { padding: 12px 16px; }
+  .chat-pane-h .who { font-size: 13px; }
+  .chat-pane-h .role { font-size: 11px; }
+  .chat-pane-body { padding: 16px; gap: 12px; }
+  .chat-msg { max-width: 85%; }
+  .chat-msg .bubble { font-size: 13.5px; }
+  .chat-compose { padding: 12px; }
+  .chat-compose input { font-size: 14px; padding: 10px 14px; }
+  .chat-compose .p-btn { padding: 8px 12px; }
+
+  /* Team strip */
+  .team-strip { grid-template-columns: 1fr; }
+
+  /* Settings layout */
+  .portal-content > div[style*="grid-template-columns: 220px"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Sidebar: tighter spacing */
+  .portal-side { padding: 18px 14px; }
+  .portal-side .brand { padding: 4px 8px 18px; margin-bottom: 14px; }
+
+  /* Demo banner — tighter on mobile */
+  .demo-banner {
+    font-size: 11px;
+    padding: 6px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .demo-banner > span:first-child { flex: 1; min-width: 0; }
+  body.has-banner .portal-shell { padding-top: 56px; }
+  body.has-banner .portal-side { top: 56px; }
+  body.has-banner .portal-topbar { top: 56px; }
+}
+
+/* Login mobile */
+@media (max-width: 900px) {
+  .login-shell { grid-template-columns: 1fr; min-height: auto; }
+  .login-pane { min-height: auto; padding: 28px 22px 36px; }
+  .login-pane .logo { margin-bottom: 32px; }
+  .login-form h1 { font-size: clamp(28px, 8vw, 40px); }
+  .login-form .sub { margin-bottom: 24px; font-size: 14.5px; }
+  .login-form { max-width: none; }
+  .login-form .footer-note { padding-top: 24px; flex-direction: column; gap: 6px; align-items: flex-start; }
+  .login-art {
+    padding: 36px 22px;
+    min-height: 360px;
+  }
+  .login-art .art-quote {
+    font-size: clamp(22px, 5.5vw, 32px);
+    margin-top: 32px;
+  }
+  .login-art .art-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 28px;
+    padding-top: 24px;
+  }
+  .login-art .art-stat .v { font-size: 28px; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .stat-grid { grid-template-columns: 1fr !important; }
+  .doc-grid { grid-template-columns: 1fr; }
+  .portal-h h2 { font-size: 22px !important; }
+}
