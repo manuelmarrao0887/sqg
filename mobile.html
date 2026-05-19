@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>SQG · Mobile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="components.css"/>
+
+  <style>
+    body { background: #E8EAE3; min-height: 100vh; margin: 0; }
+    .showcase {
+      padding: 60px clamp(20px, 4vw, 60px);
+      display: flex; flex-direction: column;
+      gap: 80px;
+      max-width: 1640px; margin: 0 auto;
+    }
+    .showcase-head { max-width: 700px; }
+    .showcase-head .eyebrow { display: block; margin-bottom: 14px; }
+    .showcase-head h1 {
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: -.025em; line-height: 1.05;
+      margin: 0 0 18px;
+    }
+    .showcase-head p {
+      font-size: 17px; color: var(--fg-muted); margin: 0 0 24px;
+      line-height: 1.5; max-width: 56ch;
+    }
+    .showcase-head .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .devices-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 60px 40px;
+      align-items: end;
+    }
+    .device-frame {
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+    }
+    .device-frame .caption {
+      text-align: center; max-width: 320px;
+    }
+    .device-frame .caption .lbl {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--fg-muted); margin-bottom: 6px;
+    }
+    .device-frame .caption h3 {
+      font-family: var(--display); font-weight: 500; font-size: 22px;
+      letter-spacing: -.015em; margin: 0 0 6px;
+    }
+    [data-type="sans"] .device-frame .caption h3 { font-weight: 500; letter-spacing: -.025em; }
+    .device-frame .caption p {
+      font-size: 13.5px; color: var(--fg-muted); margin: 0; line-height: 1.5;
+    }
+
+    .phone-iframe {
+      width: 100%; height: 100%; border: 0;
+      background: transparent;
+    }
+
+    .section-divider {
+      display: flex; align-items: center; gap: 18px;
+      margin-top: 24px;
+    }
+    .section-divider .line { flex: 1; height: 1px; background: var(--border); }
+    .section-divider .num {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--fg-muted);
+    }
+    .section-divider h2 {
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: -.02em; margin: 0;
+    }
+    [data-type="sans"] .section-divider h2 { font-weight: 500; letter-spacing: -.03em; }
+
+    .nav-bar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px) saturate(140%);
+      background: color-mix(in oklab, #E8EAE3 78%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+    }
+    .nav-bar-inner {
+      max-width: 1640px; margin: 0 auto;
+      padding: 18px clamp(20px, 4vw, 60px);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-bar a.back {
+      font-size: 13px; color: var(--fg); display: inline-flex; align-items: center; gap: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .showcase { padding: 32px 16px; gap: 56px; }
+      .devices-row { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+
+  <script>
+    document.documentElement.setAttribute('data-type', 'sans');
+  </script>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="nav-bar">
+    <div class="nav-bar-inner">
+      <a href="index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; color:inherit;">
+        <span style="width:32px; height:32px; flex-shrink:0; border-radius:8px; background:#0F2E26; color:#D4F25E; display:grid; place-items:center;">
+          <svg width="20" height="20" viewBox="0 0 40 40" fill="none">
+            <path d="M27 12 C 24 9, 16 9, 13 12 C 10 15, 12 18, 16 19 L 24 21 C 28 22, 30 25, 27 28 C 24 31, 16 31, 13 28" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <circle cx="27" cy="30" r="1.6" fill="currentColor"/>
+          </svg>
+        </span>
+        <span style="display:flex; flex-direction:column; line-height:1;">
+          <span style="font-family:var(--display); font-size:18px; font-weight:500; letter-spacing:-.02em; color:#14181A;">SQG</span>
+          <span style="font-family:var(--mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:#5A625C; margin-top:3px;">Mobile · Showcase</span>
+        </span>
+      </a>
+      <a href="index.html" class="back">← Voltar ao site</a>
+    </div>
+  </header>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const PhoneFrame = ({ children, width = 360, height = 780 }) => (
+      <div style={{
+        width, height, borderRadius: 44, overflow: 'hidden', position: 'relative',
+        background: '#000', padding: 8,
+        boxShadow: '0 30px 60px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.1)',
+      }}>
+        <div style={{
+          position: 'absolute', top: 14, left: '50%', transform: 'translateX(-50%)',
+          width: 110, height: 30, borderRadius: 999, background: '#000', zIndex: 50,
+        }}/>
+        <div style={{
+          width: '100%', height: '100%', borderRadius: 36, overflow: 'hidden', background: '#fff',
+          position: 'relative',
+        }}>
+          {children}
+        </div>
+        <div style={{
+          position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)',
+          width: 120, height: 4, borderRadius: 999, background: 'rgba(255,255,255,.4)', zIndex: 50,
+        }}/>
+      </div>
+    );
+
+    const Device = ({ src, lbl, title, sub }) => (
+      <div className="device-frame">
+        <PhoneFrame width={360} height={780}>
+          <iframe className="phone-iframe" src={src} title={title}/>
+        </PhoneFrame>
+        <div className="caption">
+          <div className="lbl">{lbl}</div>
+          <h3>{title}</h3>
+          <p>{sub}</p>
+        </div>
+      </div>
+    );
+
+    function App() {
+      return (
+        <div className="showcase">
+          <header className="showcase-head">
+            <span className="eyebrow">SQG · Mobile</span>
+            <h1>Pensado para o telemóvel — onde quase tudo acontece, hoje.</h1>
+            <p>
+              Todo o site e portal de cliente foram desenhados primeiro para o ecrã pequeno. Aqui em baixo, uma vista de cada momento-chave em iPhone real.
+            </p>
+            <div className="actions">
+              <a href="index.html" className="btn">Ver site em fullscreen</a>
+              <a href="portal/login.html" className="btn ghost">Ver portal em fullscreen</a>
+            </div>
+          </header>
+
+          <section>
+            <div className="section-divider">
+              <span className="num">01</span>
+              <h2>Website</h2>
+              <span className="line"/>
+            </div>
+            <div className="devices-row" style={{marginTop: 48}}>
+              <Device
+                src="index.html"
+                lbl="Homepage"
+                title="Hero + navegação"
+                sub="Menu hamburger com slide-out fullscreen. Stats empilhados, CTA com largura total."
+              />
+              <Device
+                src="index.html#servicos"
+                lbl="Serviços"
+                title="Cards em coluna única"
+                sub="Os 4 serviços empilham-se, mantendo a numeração e a hierarquia tipográfica."
+              />
+              <Device
+                src="index.html#simulador"
+                lbl="Simulador"
+                title="Calculadora fiscal"
+                sub="Inputs grandes, segmented controls a 100% de largura, resultado em destaque."
+              />
+              <Device
+                src="contabilidade.html#calculadora"
+                lbl="Serviço · Contabilidade"
+                title="Calculadora de avença"
+                sub="Sliders maiores, extras tocáveis com hit-area de 56px. Estimativa atualiza ao vivo."
+              />
+            </div>
+          </section>
+
+          <section>
+            <div className="section-divider">
+              <span className="num">02</span>
+              <h2>Portal de cliente</h2>
+              <span className="line"/>
+            </div>
+            <div className="devices-row" style={{marginTop: 48}}>
+              <Device
+                src="portal/login.html"
+                lbl="Portal · Login"
+                title="Entrada do portal"
+                sub="Painel artístico empilhado por baixo do formulário. Credenciais já preenchidas."
+              />
+              <Device
+                src="portal/index.html#overview"
+                lbl="Portal · Resumo"
+                title="KPIs e atividade"
+                sub="Cartões em 2 colunas, sidebar transformada em drawer. Topbar mostra a empresa."
+              />
+              <Device
+                src="portal/index.html#invoices"
+                lbl="Portal · Faturação"
+                title="Faturas como cards"
+                sub="A tabela transforma-se em lista de cards verticais — sem scroll horizontal."
+              />
+              <Device
+                src="portal/index.html#calendar"
+                lbl="Portal · Calendário"
+                title="Dezembro 2025"
+                sub="Grelha condensada mantém os 7 dias por linha; eventos com labels curtas."
+              />
+              <Device
+                src="portal/index.html#messages"
+                lbl="Portal · Mensagens"
+                title="Chat com a Sofia"
+                sub="Lista de conversas substituída pela conversa ativa; envio rápido com teclado."
+              />
+              <Device
+                src="portal/index.html#team"
+                lbl="Portal · Equipa"
+                title="Quem está consigo"
+                sub="A gestora de conta em destaque; restantes membros em coluna única."
+              />
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
